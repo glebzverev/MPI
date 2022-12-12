@@ -33,14 +33,15 @@ int main(int argc, char** argv) {
     int MAX = (world_size <= 25) ? world_size : 25;
     if (world_rank == 0){
         // ROOT PROCESS
-        // Ждём прохождения критической секции от процесса с индексом INDEXER.
         printf("Hello world from ROOT processor %s, rank %d out of %d processors\n",
             processor_name, world_rank, world_size);
         value = 1;
         INDEXER = 1;
 
         while(INDEXER < MAX){
+            // Отправляем сигнал процессу с индексом INDEXER на прохождение критической секции.
             MPI_Send( &value, 1, MPI_INT, INDEXER, 0, MPI_COMM_WORLD);
+            // Ждём прохождения критической секции от процесса с индексом INDEXER.
             MPI_Recv( &value, 1, MPI_INT, INDEXER, 0, MPI_COMM_WORLD, &status );
             INDEXER++;
         }
