@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
         else{
             // Если не существует, создадим файл, sleep(0;10), удалим файл.
             srand(time(NULL));
-            int r = rand() % 10;
+            int r = rand() % 4;
             printf("Sleep: %d\n", r);
             FILE *fp = fopen("critical.txt", "wb+");
             sleep(r);

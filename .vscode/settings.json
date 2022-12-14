@@ -11,6 +11,8 @@
         "utility": "c",
         "unistd.h": "c",
         "cerrno": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "random": "c",
+        "algorithm": "c"
     }
 }
